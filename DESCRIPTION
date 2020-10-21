@@ -10,3 +10,4 @@ LazyData: true
 Imports: 
     xml2,
     stringr
+RoxygenNote: 6.1.1
