@@ -94,7 +94,8 @@ fixBinGltf <- function(PackageSourcesDir, invalids) {
   # Delete invalid XML from modelLib
   message("Removendo arquivos BIN e GLTF inválidos em modelLib")
   filesToRemove <- paste0(file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 3)))
-  status <- file.remove(filesToRemove)
+  xmlsToRemove <- paste0(file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 2)))
+  status <- file.remove(c(filesToRemove, xmlsToRemove))
   message(sum(status), " arquivos removidos")
   message("----------------------------")
   #
