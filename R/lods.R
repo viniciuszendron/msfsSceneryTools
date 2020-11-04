@@ -80,11 +80,20 @@ fixLods <- function(PackageSourcesDir, invalids) {
 
   # Delete invalid XML from modelLib
   message("Removendo arquivos XML inválidos em modelLib")
-  filesToRemove <- paste0(file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 3)))
+  filesToRemove <- file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 3))
   status <- file.remove(filesToRemove)
-  message(sum(status), " arquivos removidos")
+  message(sum(status), " arquivos XML removidos")
   message("----------------------------")
-  #
+
+  # Delete correspondent textures
+  ids <- stringr::str_remove(sapply(invalids, "[[", 3), ".xml$")
+  texToRemove <- list.files(file.path(PackageSourcesDir, "modelLib", "texture"),
+                            paste0(ids, collapse = "|"),
+                            all.files = TRUE,
+                                      full.names = TRUE)
+  statusPNG <- file.remove(texToRemove)
+  message(sum(statusPNG), " arquivos PNG (texture) removidos")
+  message("----------------------------")
 
   # Clean corrupted guids from objects.xml
   invalidGuids <- sapply(invalids, "[[", 2)

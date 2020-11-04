@@ -93,12 +93,22 @@ fixBinGltf <- function(PackageSourcesDir, invalids) {
 
   # Delete invalid XML from modelLib
   message("Removendo arquivos BIN e GLTF inválidos em modelLib")
-  filesToRemove <- paste0(file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 3)))
-  xmlsToRemove <- paste0(file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 2)))
+  filesToRemove <- file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 3))
+  xmlsToRemove <- file.path(PackageSourcesDir, "modelLib", sapply(invalids, "[[", 2))
   status <- file.remove(c(filesToRemove, xmlsToRemove))
-  message(sum(status), " arquivos removidos")
+  message(sum(status), " arquivos BIN/GLTF/XML removidos")
   message("----------------------------")
-  #
+
+  # Delete correspondent textures
+  ids <- stringr::str_remove(sapply(invalids, "[[", 2), ".xml$")
+  texToRemove <- list.files(file.path(PackageSourcesDir, "modelLib", "texture"),
+                            paste0(ids, collapse = "|"),
+                            all.files = TRUE,
+                            full.names = TRUE)
+  statusPNG <- file.remove(texToRemove)
+  message(sum(statusPNG), " arquivos PNG (texture) removidos")
+  message("----------------------------")
+
 
   # Clean corrupted guids from objects.xml
   invalidGuids <- sapply(invalids, "[[", 4)

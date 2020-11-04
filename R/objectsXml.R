@@ -1,10 +1,9 @@
 #' Fix objects.xml
 #'
-#' @param xmlPath
+#' @param xmlPath Path to the objects.xml file (usually located inside PackageSources/scene).
 #' @param invalidGuids
 #' @param createBackup
 #'
-#' @return
 #' @export
 fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 
@@ -39,3 +38,34 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
   xml2::write_xml(obj, xmlPath)
 
 }
+
+
+#' Get guids from objects.xml nodes
+#'
+#' Get all guids identifiers registered in objects.xml file.
+#'
+#' @param xmlPath Path to the objects.xml file (usually located inside PackageSources/scene).
+#'
+#' @return A vector with the guids of all objects.xml nodes.
+#' @export
+#'
+#' @examples objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+objectsXmlGuids <- function(xmlPath){
+
+  # Tests
+  # xmlPath <- "D:/FSProjects/maceio/PackageSources/scene/objects.xml"
+  #
+
+  obj <- xml2::read_xml(xmlPath)
+
+  LibObjNodes <- xml2::xml_find_all(obj, "//SceneryObject/LibraryObject")
+  message(basename(xmlPath), " inicializado com ", length(LibObjNodes), " entradas")
+
+  guids <- xml2::xml_attr(LibObjNodes, attr = "name")
+
+  guids <- stringr::str_replace_all(guids, "\\{|\\}", "")
+
+  return(guids)
+
+}
+

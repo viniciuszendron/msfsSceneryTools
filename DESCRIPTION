@@ -1,7 +1,7 @@
 Package: msfsSceneryTools
 Type: Package
 Title: msfsSceneryTools
-Version: 0.1.1
+Version: 0.1.2
 Author: Vinícius Zendron
 Maintainer: Vinícius Zendron <viniciuszendron50@outlook.com>
 Description: Tools to work with scenery creation in Microsoft Flight Simulator.

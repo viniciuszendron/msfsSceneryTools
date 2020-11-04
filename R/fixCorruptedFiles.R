@@ -1,30 +1,3 @@
-# library(magrittr)
-# dir_modelLib = "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources/modelLib"
-# xmls = dir(dir_modelLib) %>% .[stringr::str_detect(., "xml")]
-# count_xmls = length(xmls)
-# modelLibObjs = xmls %>% stringr::str_remove_all(., stringr::fixed(".xml"))
-#
-# dir_scene = "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources/scene"
-# objects.xml = xml2::read_xml(file.path(dir_scene, "objects.xml"))
-# SceneryObjectNodes = xml2::xml_find_all(objects.xml, ".//SceneryObject")
-# length(SceneryObjectNodes)
-#
-#
-# dir_output = "D:/FSProjects/florianopolis-megapack/florianopolis-mega/Packages/msfsmaps-florianopolis-mega"
-# filesTEXTURE = dir(file.path(dir_output, "scenery/msfsmaps/TEXTURE"))
-# filesTEXTUREUnique = filesTEXTURE %>%
-#   stringr::str_remove_all(., stringr::fixed(".PNG.DDS")) %>%
-#   stringr::str_remove_all(., stringr::fixed(".json")) %>%
-#   stringr::str_remove_all(., "_.*") %>%
-#   unique()
-#
-# modelLibObjs[!modelLibObjs %in% filesTEXTUREUnique]
-
-
-#install.packages("xml2")
-#install.packages("stringr")
-
-
 #' Detect and Remove Corrupted Files
 #'
 #' @param PackageSourcesDir
