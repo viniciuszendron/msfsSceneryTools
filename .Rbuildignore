@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 dev
+^msfsSceneryTools\.Rcheck$
+^msfsSceneryTools.*\.tar\.gz$
+^msfsSceneryTools.*\.tgz$
