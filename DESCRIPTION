@@ -5,6 +5,7 @@ Version: 0.1.2
 Author: Vinícius Zendron
 Maintainer: Vinícius Zendron <viniciuszendron50@outlook.com>
 Description: Tools to work with scenery creation in Microsoft Flight Simulator.
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports: 
