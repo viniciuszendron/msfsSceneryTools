@@ -40,13 +40,25 @@ updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures)
 
   # Create a vector with files to delete
   namesToRemoveModelLib <- guidsModelLibXMLs[!guidsModelLibXMLs %in% guidsObjectsXML]
-  if (length(namesToRemoveModelLib) == 0) {
-    message("Scenery files are up to date with objects.xml. Nothing to remove.")
-    return(invisible())
-  }
   namesToRemoveModelLib <- names(namesToRemoveModelLib)
   filesToRemoveModelLib <- list.files(modelLibDir, pattern = paste0(namesToRemoveModelLib, collapse = "|"), full.names = TRUE)
   filesToRemoveModelLibTex <- list.files(textureDir, pattern = paste0(namesToRemoveModelLib, collapse = "|"), full.names = TRUE)
+  # Find files to remove (.DDS, .json)
+  filesToRemoveBuiltTex <- list.files(deleteBuiltTextures, pattern = paste0(namesToRemoveModelLib, collapse = "|"), full.names = TRUE)
+  if (length(namesToRemoveModelLib) == 0) {
+    if (length(filesToRemoveModelLibTex) == 0) {
+      message("Scenery files are up to date with objects.xml. Nothing to remove.")
+      return(invisible())
+    } else {
+      # Delete all remaining .xml, .gltf and .bin inside modelLibDir
+      message("Removing .PNG.DDS/.PNG.json texture files in TEXTURE directory")
+      statusDBT <- file.remove(filesToRemoveBuiltTex)
+      message(sum(statusDBT), " .PNG.DDS/.PNG.json files (TEXTURE built) removed")
+      message("----------------------------")
+      return(invisible())
+    }
+
+  }
 
   # Ask yes/no confirmation question
   res <- try(askYesNo(paste0("Are you sure you want to delete all objects with the following name(s)?\n", paste0(namesToRemoveModelLib, collapse = "\n"))))
@@ -79,6 +91,8 @@ updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures)
     message("----------------------------")
 
   }
+
+  return(invisible())
 
 }
 
