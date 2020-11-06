@@ -7,6 +7,8 @@
 fixObjectsXML(xmlPath, invalidGuids, createBackup = FALSE)
 }
 \arguments{
+\item{xmlPath}{Path to the objects.xml file (usually located inside PackageSources/scene).}
+
 \item{createBackup}{}
 }
 \description{

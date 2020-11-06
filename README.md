@@ -1,6 +1,6 @@
 # msfsSceneryTools
 
-[![version](https://img.shields.io/badge/version-0.1.2-blue.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-0.2.0-red.svg)](https://semver.org)
 
 This package provides some functions to Microsoft Flight Simulator Scenery developers, especially those who extract photogrammetry data from other sources and need to do some cleaning and removing corrupted files.
 
@@ -14,6 +14,19 @@ remotes::install_github("viniciuszendron/msfsSceneryTools@main")
 ```
 
 ## Changelog
+
+### Version 0.2.0
+
+#### Update Scenery Files
+
+The new function `updateSceneryFiles` was created to remove remaining scenery files from modelLib and modelLib/texture that are no longer registered in scene/objects.xml (e.g. deleted photogrammetry tiles from in-game scenery editor). It can also remove .PNG.DDS and .PNG.DDS.json files located inside of a TEXTURE folder of an already built project.
+
+#### Functions
+
+##### New Functions
+
+- `updateSceneryFiles`: Delete scenery files across the project (modelLib and modelLib/texture) that are no longer registered in scene/objects.xml. It can also remove .PNG.DDS and .PNG.DDS.json files located inside of a TEXTURE folder of an already built project by providing the TEXTURE path in `deleteBuiltTextures` argument.
+- `getXmlGuid`: Get GUID from a modelLib .xml file.
 
 ### Version 0.1.2
 
