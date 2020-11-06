@@ -50,6 +50,13 @@ updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures)
       message("Scenery files are up to date with objects.xml. Nothing to remove.")
       return(invisible())
     } else {
+      # Ask yes/no confirmation question
+      res <- try(askYesNo(paste0("Are you sure you want to delete all objects with the following name(s)?\n", paste0(namesToRemoveModelLib, collapse = "\n"))))
+      if (inherits(res, "try-error")) res <- try(askYesNo("Are you sure you want to delete all objects not registered in objects.xml?"))
+      if (!inherits(res, "try-error") & !isTRUE(res)) {
+        message("Operation aborted.")
+        return(invisible())
+      }
       # Delete all remaining .xml, .gltf and .bin inside modelLibDir
       message("Removing .PNG.DDS/.PNG.json texture files in TEXTURE directory")
       statusDBT <- file.remove(filesToRemoveBuiltTex)
