@@ -15,20 +15,24 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: windows-latest
+  R-CMD-check: #build:
+    runs-on: ${{ matrix.config.os }} #windows-latest
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
     strategy:
-      fail-fast: true
+      fail-fast: false
       max-parallel: 6
       matrix:
-        r-version: [3.6, latest]
+        config: 
+          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: '3.6'}
+        #r-version: [3.6, latest]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up R ${{ matrix.r-version }}
+      - name: Set up R ${{ matrix.config.r }} #${{ matrix.r-version }}
         uses: r-lib/actions/setup-r@v1
         with:
-          r-version: ${{ matrix.r-version }}
+          r-version: ${{ matrix.config.r }} #${{ matrix.r-version }}
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
