@@ -49,7 +49,10 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 #' @return A vector with the guids of all objects.xml nodes.
 #' @export
 #'
-#' @examples objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+#' @examples
+#' \dontrun{
+#' objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+#' }
 objectsXmlGuids <- function(xmlPath){
 
   # Tests

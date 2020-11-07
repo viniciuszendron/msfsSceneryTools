@@ -11,8 +11,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 #' updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml", deleteBuiltTextures = "D:/FSProjects/my-package/Packages/my-package/scenery/my-company/TEXTURE")
+#' }
 updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures) {
 
   # Tests

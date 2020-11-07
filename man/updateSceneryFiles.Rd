@@ -19,6 +19,8 @@ Delete scenery files across the project that are no longer registered in scene/o
 It can also remove .PNG.DDS and .PNG.DDS.json files located inside of a TEXTURE folder of an already built project by providing the TEXTURE path in `deleteBuiltTextures` argument.
 }
 \examples{
+\dontrun{
 updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml", deleteBuiltTextures = "D:/FSProjects/my-package/Packages/my-package/scenery/my-company/TEXTURE")
+}
 }
