@@ -4,10 +4,14 @@
 \alias{fixBinGltf}
 \title{Fix missing bin/gltf}
 \usage{
-fixBinGltf(PackageSourcesDir, invalids)
+fixBinGltf(PackageSourcesDir, invalids, deleteTextures = TRUE)
 }
 \arguments{
-\item{invalids}{}
+\item{PackageSourcesDir}{Path to PackageSources directory.}
+
+\item{invalids}{List with invalid files from `checkAllFilesBinGltf`.}
+
+\item{deleteTextures}{Whether to delete textures in modelLib/texture related to the corrupted data.}
 }
 \description{
 Fix missing bin/gltf
