@@ -9,6 +9,9 @@ checkFilesBinGltf(xmlPath, nlods)
 \arguments{
 \item{nlods}{}
 }
+\value{
+
+}
 \description{
 Check .bin and .gltf Files
 }

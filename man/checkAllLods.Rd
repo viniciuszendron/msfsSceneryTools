@@ -9,6 +9,9 @@ checkAllLods(modelLibDir)
 \arguments{
 \item{modelLibDir}{}
 }
+\value{
+
+}
 \description{
 Check multiple lods
 }

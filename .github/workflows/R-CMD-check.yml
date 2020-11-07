@@ -1,0 +1,38 @@
+# See https://github.com/r-lib/actions/tree/master/examples#readme for
+# additional example workflows available for the R community.
+
+name: R-CMD-check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  R-CMD-check: #build:
+    runs-on: ${{ matrix.config.os }} #windows-latest
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        config: 
+          - {os: windows-latest, r: 'release'}
+          #- {os: windows-latest, r: '3.6'}
+        #r-version: [3.6, latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up R ${{ matrix.config.r }} #${{ matrix.r-version }}
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }} #${{ matrix.r-version }}
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes", "rcmdcheck"))
+          remotes::install_deps(dependencies = TRUE)
+        shell: Rscript {0}
+      - name: Check
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        shell: Rscript {0}

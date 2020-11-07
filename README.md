@@ -1,12 +1,16 @@
 # msfsSceneryTools
 
+
+<!-- badges: start -->
+[![R build status](https://github.com/viniciuszendron/msfsSceneryTools/workflows/R-CMD-check/badge.svg)](https://github.com/viniciuszendron/msfsSceneryTools/actions)
 [![version](https://img.shields.io/badge/version-0.2.0-red.svg)](https://semver.org)
+<!-- badges: end -->
 
 This package provides some functions to Microsoft Flight Simulator Scenery developers, especially those who extract photogrammetry data from other sources and need to do some cleaning and removing corrupted files.
 
 ## Installation
 
-After installing R, just run the code above to install the latest version available:
+After installing R (https://www.r-project.org), just run the code below to install the latest package stable version available:
 
 ```r
 if (!require("remotes")) install.packages("remotes")
