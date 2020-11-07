@@ -4,10 +4,15 @@
 \alias{fixCorruptedFiles}
 \title{Detect and Remove Corrupted Files}
 \usage{
-fixCorruptedFiles(PackageSourcesDir, nlods)
+fixCorruptedFiles(PackageSourcesDir, nlods, clean = FALSE)
 }
 \arguments{
-\item{PackageSourcesDir}{}
+\item{nlods}{Number of lods of your package.
+Example: If you have files named \*_LOD00.\*, \*_LOD01.\* and \*_LOD02.\*, then nlods is 3.
+If you have only files named \*_LOD00.\*, then set nlods = 1.}
+
+\item{clean}{Whether to clean unused files on modelLib directory (i.e. files that are not registered
+in scene/objects.xml but are present in modelLib and modelLib/texture).}
 }
 \description{
 Detect and Remove Corrupted Files

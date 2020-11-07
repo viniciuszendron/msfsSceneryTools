@@ -1,12 +1,15 @@
 #' Detect and Remove Corrupted Files
 #'
-#' @param PackageSourcesDir
+#' @param PackageSourcesDir Path to PackageSources directory.
+#' @param nlods Number of lods of your package.
+#' Example: If you have files named \*_LOD00.\*, \*_LOD01.\* and \*_LOD02.\*, then nlods is 3.
+#' If you have only files named \*_LOD00.\*, then set nlods = 1.
+#' @param deleteTextures Whether to delete textures in modelLib/texture related to the corrupted data.
 #'
-#' @return
 #' @export
 #'
 #' @example
-fixCorruptedFiles <- function(PackageSourcesDir, nlods) {
+fixCorruptedFiles <- function(PackageSourcesDir, nlods, deleteTextures = TRUE) {
 
   # Testes
   # PackageSourcesDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources"
@@ -42,7 +45,7 @@ fixCorruptedFiles <- function(PackageSourcesDir, nlods) {
   } else {
     message(length(invalidBinGltf), " arquivos inválidos.")
     message("----------------------------")
-    fixLods(PackageSourcesDir, invalidLods)
+    fixLods(PackageSourcesDir, invalidLods, deleteTextures = deleteTextures)
   }
 
 
@@ -55,7 +58,7 @@ fixCorruptedFiles <- function(PackageSourcesDir, nlods) {
   } else {
     message(length(invalidBinGltf), " arquivos inválidos.")
     message("----------------------------")
-    fixBinGltf(PackageSourcesDir, invalidBinGltf)
+    fixBinGltf(PackageSourcesDir, invalidBinGltf, deleteTextures = deleteTextures)
   }
 
 }

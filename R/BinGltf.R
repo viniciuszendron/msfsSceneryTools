@@ -82,14 +82,14 @@ checkAllFilesBinGltf <- function(modelLibDir, nlods) {
 
 #' Fix missing bin/gltf
 #'
-#' @param PackageSourcesDir
-#' @param invalids
+#' @param PackageSourcesDir Path to PackageSources directory.
+#' @param invalids List with invalid files from `checkAllFilesBinGltf`.
+#' @param deleteTextures Whether to delete textures in modelLib/texture related to the corrupted data.
 #'
-#' @return
 #' @export
 #'
 #' @examples
-fixBinGltf <- function(PackageSourcesDir, invalids) {
+fixBinGltf <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
 
   # Delete invalid XML from modelLib
   message("Removendo arquivos BIN e GLTF inválidos em modelLib")
@@ -100,15 +100,16 @@ fixBinGltf <- function(PackageSourcesDir, invalids) {
   message("----------------------------")
 
   # Delete correspondent textures
-  ids <- stringr::str_remove(sapply(invalids, "[[", 2), ".xml$")
-  texToRemove <- list.files(file.path(PackageSourcesDir, "modelLib", "texture"),
-                            paste0(ids, collapse = "|"),
-                            all.files = TRUE,
-                            full.names = TRUE)
-  statusPNG <- file.remove(texToRemove)
-  message(sum(statusPNG), " arquivos PNG (texture) removidos")
-  message("----------------------------")
-
+  if (isTRUE(deleteTextures)) {
+    ids <- stringr::str_remove(sapply(invalids, "[[", 2), ".xml$")
+    texToRemove <- list.files(file.path(PackageSourcesDir, "modelLib", "texture"),
+                              paste0(ids, collapse = "|"),
+                              all.files = TRUE,
+                              full.names = TRUE)
+    statusPNG <- file.remove(texToRemove)
+    message(sum(statusPNG), " arquivos PNG (texture) removidos")
+    message("----------------------------")
+  }
 
   # Clean corrupted guids from objects.xml
   invalidGuids <- sapply(invalids, "[[", 4)
