@@ -1,6 +1,9 @@
 # msfsSceneryTools
 
+<!-- badges: start -->
+[![R build status](https://github.com/viniciuszendron/msfsSceneryTools/workflows/R-CMD-check/badge.svg)](https://github.com/viniciuszendron/msfsSceneryTools/actions)
 [![version](https://img.shields.io/badge/version-0.1.2-blue.svg)](https://semver.org)
+<!-- badges: end -->
 
 This package provides some functions to Microsoft Flight Simulator Scenery developers, especially those who extract photogrammetry data from other sources and need to do some cleaning and removing corrupted files.
 
