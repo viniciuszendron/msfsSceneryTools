@@ -7,11 +7,14 @@
 objectsXmlGuids(xmlPath)
 }
 \arguments{
-\item{xmlPath}{}
+\item{xmlPath}{Path to the objects.xml file (usually located inside PackageSources/scene).}
+}
+\value{
+A vector with the guids of all objects.xml nodes.
 }
 \description{
-Get guids from objects.xml nodes
+Get all guids identifiers registered in objects.xml file.
 }
 \examples{
-objectsXmlNodes("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 }

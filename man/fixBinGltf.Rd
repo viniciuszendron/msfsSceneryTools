@@ -9,6 +9,9 @@ fixBinGltf(PackageSourcesDir, invalids)
 \arguments{
 \item{invalids}{}
 }
+\value{
+
+}
 \description{
 Fix missing bin/gltf
 }
