@@ -9,6 +9,9 @@ fixLods(PackageSourcesDir, invalids)
 \arguments{
 \item{invalids}{}
 }
+\value{
+
+}
 \description{
 Fix Lods
 }
