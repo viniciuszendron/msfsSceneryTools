@@ -50,7 +50,7 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 #' }
 objectsXmlGuids <- function(xmlPath){

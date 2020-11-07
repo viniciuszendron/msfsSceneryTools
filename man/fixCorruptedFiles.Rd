@@ -9,9 +9,6 @@ fixCorruptedFiles(PackageSourcesDir, nlods)
 \arguments{
 \item{PackageSourcesDir}{}
 }
-\value{
-
-}
 \description{
 Detect and Remove Corrupted Files
 }

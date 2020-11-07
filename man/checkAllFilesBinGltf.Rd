@@ -9,9 +9,6 @@ checkAllFilesBinGltf(modelLibDir, nlods)
 \arguments{
 \item{nlods}{}
 }
-\value{
-
-}
 \description{
 Check multiple .bin and .gltf files
 }

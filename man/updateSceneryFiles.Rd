@@ -15,11 +15,11 @@ If NULL/not declared, will search for default location.}
 \item{deleteBuiltTextures}{If desired, pass path of TEXTURE directory in built package to delete textures already built.}
 }
 \description{
-Delete scenery files across the project that are no longer registered in scene/objects.xml.
+Delete scenery files across the project (inside of modelLib and modelLib/texture) that are no longer registered in scene/objects.xml.
 It can also remove .PNG.DDS and .PNG.DDS.json files located inside of a TEXTURE folder of an already built project by providing the TEXTURE path in `deleteBuiltTextures` argument.
 }
 \examples{
-\dontrun{
+\donttest{
 updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 updateSceneryFiles("D:/FSProjects/my-package/PackageSources/scene/objects.xml", deleteBuiltTextures = "D:/FSProjects/my-package/Packages/my-package/scenery/my-company/TEXTURE")
 }

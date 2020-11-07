@@ -16,5 +16,7 @@ GUID related to the .xml provided.
 Get GUID from a modelLib .xml file.
 }
 \examples{
+\donttest{
 getXmlGuid("D:/FSProjects/my-package/PackageSources/modelLib/03726152506153634.xml")
+}
 }
