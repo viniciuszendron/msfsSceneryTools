@@ -17,6 +17,9 @@ if (!require("remotes")) install.packages("remotes")
 remotes::install_github("viniciuszendron/msfsSceneryTools@main")
 ```
 
+If a message asking to update packages appear, just press Enter key or select the option "None".
+
+
 ## Changelog
 
 ### Version 0.2.0
