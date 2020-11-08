@@ -9,9 +9,6 @@ checkLods(xmlPath)
 \arguments{
 \item{xmlPath}{}
 }
-\value{
-
-}
 \description{
 Check lods
 }

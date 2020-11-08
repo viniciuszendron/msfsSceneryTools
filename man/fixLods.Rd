@@ -4,13 +4,14 @@
 \alias{fixLods}
 \title{Fix Lods}
 \usage{
-fixLods(PackageSourcesDir, invalids)
+fixLods(PackageSourcesDir, invalids, deleteTextures = TRUE)
 }
 \arguments{
-\item{invalids}{}
-}
-\value{
+\item{PackageSourcesDir}{Path to PackageSources directory.}
 
+\item{invalids}{List with invalid files from `checkAllLods`.}
+
+\item{deleteTextures}{Whether to delete textures in modelLib/texture related to the corrupted data.}
 }
 \description{
 Fix Lods

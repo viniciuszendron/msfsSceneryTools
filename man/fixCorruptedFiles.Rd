@@ -4,13 +4,16 @@
 \alias{fixCorruptedFiles}
 \title{Detect and Remove Corrupted Files}
 \usage{
-fixCorruptedFiles(PackageSourcesDir, nlods)
+fixCorruptedFiles(PackageSourcesDir, nlods, deleteTextures = TRUE)
 }
 \arguments{
-\item{PackageSourcesDir}{}
-}
-\value{
+\item{PackageSourcesDir}{Path to PackageSources directory.}
 
+\item{nlods}{Number of lods of your package.
+Example: If you have files named \*_LOD00.\*, \*_LOD01.\* and \*_LOD02.\*, then nlods is 3.
+If you have only files named \*_LOD00.\*, then set nlods = 1.}
+
+\item{deleteTextures}{Whether to delete textures in modelLib/texture related to the corrupted data.}
 }
 \description{
 Detect and Remove Corrupted Files

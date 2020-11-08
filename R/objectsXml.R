@@ -1,8 +1,8 @@
 #' Fix objects.xml
 #'
 #' @param xmlPath Path to the objects.xml file (usually located inside PackageSources/scene).
-#' @param invalidGuids
-#' @param createBackup
+#' @param invalidGuids Vector with invalid GUIDS to remove from objects.xml.
+#' @param createBackup Create a backup of objects.xml.
 #'
 #' @export
 fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
@@ -49,7 +49,10 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 #' @return A vector with the guids of all objects.xml nodes.
 #' @export
 #'
-#' @examples objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+#' @examples
+#' \donttest{
+#' objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+#' }
 objectsXmlGuids <- function(xmlPath){
 
   # Tests

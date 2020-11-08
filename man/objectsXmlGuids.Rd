@@ -16,5 +16,7 @@ A vector with the guids of all objects.xml nodes.
 Get all guids identifiers registered in objects.xml file.
 }
 \examples{
+\donttest{
 objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
+}
 }

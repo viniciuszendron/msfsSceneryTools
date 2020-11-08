@@ -9,7 +9,9 @@ fixObjectsXML(xmlPath, invalidGuids, createBackup = FALSE)
 \arguments{
 \item{xmlPath}{Path to the objects.xml file (usually located inside PackageSources/scene).}
 
-\item{createBackup}{}
+\item{invalidGuids}{Vector with invalid GUIDS to remove from objects.xml.}
+
+\item{createBackup}{Create a backup of objects.xml.}
 }
 \description{
 Fix objects.xml
