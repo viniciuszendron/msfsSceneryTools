@@ -36,7 +36,7 @@ updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures)
   textureDir <- file.path(modelLibDir, "texture")
 
   # Get all valid GUIDS from scene/objects.xml
-  guidsObjectsXML <- objectsXmlGuids(xmlPath)
+  guidsObjectsXML <- unique(objectsXmlGuids(xmlPath))
 
   # Open all .xml in modelLib and match GUIDS with number IDs
   modelLibXmls <- list.files(modelLibDir, pattern = ".xml$", full.names = TRUE)
@@ -45,13 +45,23 @@ updateSceneryFiles <- function(xmlPath, modelLibDir = NULL, deleteBuiltTextures)
   # Create a vector with files to delete
   namesToRemoveModelLib <- guidsModelLibXMLs[!guidsModelLibXMLs %in% guidsObjectsXML]
   namesToRemoveModelLib <- names(namesToRemoveModelLib)
-  pattern <- paste0(namesToRemoveModelLib, collapse = "|")
-  if (pattern == "" || is.null(pattern)) pattern <- "#--|--#"
-  filesToRemoveModelLib <- list.files(modelLibDir, pattern = pattern, full.names = TRUE)
-  filesToRemoveModelLibTex <- list.files(textureDir, pattern = pattern, full.names = TRUE)
+  if (length(namesToRemoveModelLib) > 100) {
+    listPattern <- split(namesToRemoveModelLib, ceiling(seq_along(namesToRemoveModelLib)/100))
+    filesToRemoveModelLib <- lapply(listPattern, function(p) list.files(modelLibDir, pattern = p, full.names = TRUE))
+    filesToRemoveModelLibTex <- list.files(textureDir, pattern = pattern, full.names = TRUE)
+  } else {
+    pattern <- paste0(namesToRemoveModelLib, collapse = "|")
+    if (pattern == "" || is.null(pattern)) pattern <- "#--|--#"
+    filesToRemoveModelLib <- list.files(modelLibDir, pattern = pattern, full.names = TRUE)
+    filesToRemoveModelLibTex <- list.files(textureDir, pattern = pattern, full.names = TRUE)
+  }
   # Find files to remove (.DDS, .json)
   if (!missing(deleteBuiltTextures)) {
-    filesToRemoveBuiltTex <- list.files(deleteBuiltTextures, pattern = paste0(namesToRemoveModelLib, collapse = "|"), full.names = TRUE)
+    if (length(namesToRemoveModelLib) > 100) {
+      ################## ESCREVER CODIGO ######################
+    } else {
+      filesToRemoveBuiltTex <- list.files(deleteBuiltTextures, pattern = pattern, full.names = TRUE)
+    }
   } else {
     filesToRemoveBuiltTex <- NULL
   }
