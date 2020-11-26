@@ -103,3 +103,50 @@ fixLods <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
 
 }
 
+#' Remove lods from project
+#'
+#' @param PackageSourcesDir
+#' @param lodsToRemove
+#'
+#' @export
+removeLods <- function(PackageSourcesDir, lodsToRemove, removeBinGltf = TRUE, removeTextures = TRUE) {
+  # PackageSourcesDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources"
+  modelLibDir <- file.path(PackageSourcesDir, "modelLib")
+  xmlFiles <- list.files(modelLibDir, pattern = ".xml$", full.names = TRUE)
+
+  message("Removendo LODS ", paste0(lodsToRemove, collapse = ", "), " de .xmls em modelLib")
+  lapply(xmlFiles, function(xml) removeLodNodesFromXML(xml, lodsToRemove))
+  message(length(xmlFiles), " arquivos .xml alterados")
+
+  if (removeBinGltf) {
+    message("Removendo arquivos .bin e .gltf correspondentes em modelLib")
+    removeBinGltfByLods(modelLibDir = modelLibDir, lodsToRemove = lodsToRemove)
+  }
+
+  if (removeTextures) {
+    message("Removendo texturas correspondentes em modelLib/texture")
+    removeModelLibTexturesByLods(textureDir = file.path(modelLibDir, "texture"),
+                                 lodsToRemove = lodsToRemove)
+  }
+}
+
+#' Remove lod nodes from XML
+#'
+#' @param xmlPath
+#' @param lodsToRemove
+#' @param removeBinGltf
+#' @param removeTextures
+#'
+#' @export
+removeLodNodesFromXML <- function(xmlPath, lodsToRemove) {
+  # xmlPath <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib/03617341435360627.xml"
+  # lodsToRemove <- c("01", "02")
+  obj <- xml2::read_xml(xmlPath)
+  LibObjNodes <- xml2::xml_find_all(obj, "//LODS/LOD")
+  pattern <- paste0(paste0("_LOD", lodsToRemove, ".gltf\""), collapse = "|")
+  nodesToRemove <- LibObjNodes[stringr::str_detect(LibObjNodes, pattern)]
+  xml2::xml_remove(nodesToRemove)
+  # Write new file
+  file.remove(xmlPath)
+  xml2::write_xml(obj, xmlPath)
+}

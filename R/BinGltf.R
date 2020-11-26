@@ -116,3 +116,28 @@ fixBinGltf <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
   fixObjectsXML(xmlPath = file.path(PackageSourcesDir, "scene/objects.xml"), invalidGuids = invalidGuids)
 
 }
+
+removeBinGltfByLods <- function(modelLibDir, lodsToRemove) {
+  # modelLibDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib"
+  lodsToRemoveF <- paste0("_LOD", lodsToRemove)
+  pattern <- paste0(
+    c(
+      paste0(lodsToRemoveF, ".bin"),
+      paste0(lodsToRemoveF, ".gltf")
+    ),
+    collapse = "|"
+  )
+  filesToRemove <- list.files(modelLibDir, pattern = pattern, full.names = TRUE)
+  status <- file.remove(filesToRemove)
+  message(sum(status), " arquivos BIN/GLTF removidos (LODS ", paste(lodsToRemove, collapse = ", "), ")")
+  message("----------------------------")
+}
+
+removeModelLibTexturesByLods <- function(textureDir, lodsToRemove) {
+  # textureDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib/texture"
+  lodsToRemoveF <- paste0("_LOD", lodsToRemove, collapse = "|")
+  filesToRemove <- list.files(textureDir, pattern = lodsToRemoveF, full.names = TRUE)
+  status <- file.remove(filesToRemove)
+  message(sum(status), " texturas removidas (LODS ", paste(lodsToRemove, collapse = ", "), ")")
+  message("----------------------------")
+}

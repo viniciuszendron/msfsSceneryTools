@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 [![R build status](https://github.com/viniciuszendron/msfsSceneryTools/workflows/R-CMD-check/badge.svg)](https://github.com/viniciuszendron/msfsSceneryTools/actions)
-[![version](https://img.shields.io/badge/version-0.2.0-red.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-0.3.0-red.svg)](https://semver.org)
 <!-- badges: end -->
 
 This package provides some functions to Microsoft Flight Simulator Scenery developers, especially those who extract photogrammetry data from other sources and need to do some cleaning and removing corrupted files.
@@ -21,6 +21,22 @@ If a message asking to update packages appear, just press Enter key or select th
 
 
 ## Changelog
+
+### Version 0.3.0
+
+#### Remove Lods
+
+New function `removeLods` remove specific LODS from a project. It removes LOD entries from .xml located in modelLib, its correspondent .bin/.gltf and textures in modelLib/textures.
+
+#### Functions
+
+##### New Functions
+
+- `removeLods`:
+- `removeLodNodesFromXML`:
+- `removeBinGltfByLods`:
+- `removeModelLibTexturesByLods`:
+
 
 ### Version 0.2.0
 
