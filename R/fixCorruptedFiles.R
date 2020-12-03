@@ -11,12 +11,6 @@
 #' @example
 fixCorruptedFiles <- function(PackageSourcesDir, nlods, deleteTextures = TRUE) {
 
-  # Testes
-  # PackageSourcesDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources"
-  # PackageSourcesDir <- "D:/FSProjects/rio-megateste/PackageSources"
-  # PackageSourcesDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-part6/PackageSources"
-  #
-
   modelLibDir <- file.path(PackageSourcesDir, "modelLib")
 
   files <- dir(modelLibDir)
@@ -71,10 +65,6 @@ fixCorruptedFiles <- function(PackageSourcesDir, nlods, deleteTextures = TRUE) {
 #' @return Result of validation for both lods corrupted and missing bin or gltf files.
 #' @export
 isValidXML <- function(xmlPath, nlods) {
-
-  # Testes
-  #xmlPath = "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources/modelLib/036173415260400522.xml"
-  #
 
   lods <- checkLods(xmlPath)
   files <- checkFilesBinGltf(xmlPath, nlods)

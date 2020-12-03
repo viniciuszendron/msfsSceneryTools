@@ -8,7 +8,14 @@ removeLods(PackageSourcesDir, lodsToRemove, removeBinGltf = TRUE,
   removeTextures = TRUE)
 }
 \arguments{
-\item{lodsToRemove}{}
+\item{PackageSourcesDir}{Path to PackageSources directory.}
+
+\item{lodsToRemove}{A (character) vector with lods to remove.
+Example: if you wan't to remove LOD01 and LOD02, provide a vector c("01", "02").}
+
+\item{removeBinGltf}{Logical. Whether to remove correspondent .bin and .gltf files.}
+
+\item{removeTextures}{Logical. Whether to remove correspondent texture files.}
 }
 \description{
 Remove lods from project

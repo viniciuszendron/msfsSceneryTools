@@ -105,12 +105,15 @@ fixLods <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
 
 #' Remove lods from project
 #'
-#' @param PackageSourcesDir
+#' @param PackageSourcesDir Path to PackageSources directory.
 #' @param lodsToRemove
+#' A (character) vector with lods to remove.
+#' Example: if you wan't to remove LOD01 and LOD02, provide a vector c("01", "02").
+#' @param removeBinGltf Logical. Whether to remove correspondent .bin and .gltf files.
+#' @param removeTextures Logical. Whether to remove correspondent texture files.
 #'
 #' @export
 removeLods <- function(PackageSourcesDir, lodsToRemove, removeBinGltf = TRUE, removeTextures = TRUE) {
-  # PackageSourcesDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources"
   modelLibDir <- file.path(PackageSourcesDir, "modelLib")
   xmlFiles <- list.files(modelLibDir, pattern = ".xml$", full.names = TRUE)
 
@@ -132,15 +135,13 @@ removeLods <- function(PackageSourcesDir, lodsToRemove, removeBinGltf = TRUE, re
 
 #' Remove lod nodes from XML
 #'
-#' @param xmlPath
+#' @param xmlPath Path of the xml file of the object.
 #' @param lodsToRemove
-#' @param removeBinGltf
-#' @param removeTextures
+#' A (character) vector with lods to remove.
+#' Example: if you wan't to remove LOD01 and LOD02, provide a vector c("01", "02").
 #'
 #' @export
 removeLodNodesFromXML <- function(xmlPath, lodsToRemove) {
-  # xmlPath <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib/03617341435360627.xml"
-  # lodsToRemove <- c("01", "02")
   obj <- xml2::read_xml(xmlPath)
   LibObjNodes <- xml2::xml_find_all(obj, "//LODS/LOD")
   pattern <- paste0(paste0("_LOD", lodsToRemove, ".gltf\""), collapse = "|")
@@ -149,4 +150,45 @@ removeLodNodesFromXML <- function(xmlPath, lodsToRemove) {
   # Write new file
   file.remove(xmlPath)
   xml2::write_xml(obj, xmlPath)
+}
+
+#' Remove .bin and .gltf by lods
+#'
+#' @param modelLibDir Path to modelLib directory.
+#' @param lodsToRemove
+#' A (character) vector with lods to remove.
+#' Example: if you wan't to remove LOD01 and LOD02, provide a vector c("01", "02").
+#'
+#' @return
+#' @export
+removeBinGltfByLods <- function(modelLibDir, lodsToRemove) {
+  lodsToRemoveF <- paste0("_LOD", lodsToRemove)
+  pattern <- paste0(
+    c(
+      paste0(lodsToRemoveF, ".bin"),
+      paste0(lodsToRemoveF, ".gltf")
+    ),
+    collapse = "|"
+  )
+  filesToRemove <- list.files(modelLibDir, pattern = pattern, full.names = TRUE)
+  status <- file.remove(filesToRemove)
+  message(sum(status), " arquivos BIN/GLTF removidos (LODS ", paste(lodsToRemove, collapse = ", "), ")")
+  message("----------------------------")
+}
+
+#' Remove textures by lods
+#'
+#' @param textureDir Path to modelLib/texture directory.
+#' @param lodsToRemove
+#' A (character) vector with lods to remove.
+#' Example: if you wan't to remove LOD01 and LOD02, provide a vector c("01", "02").
+#'
+#' @return
+#' @export
+removeModelLibTexturesByLods <- function(textureDir, lodsToRemove) {
+  lodsToRemoveF <- paste0("_LOD", lodsToRemove, collapse = "|")
+  filesToRemove <- list.files(textureDir, pattern = lodsToRemoveF, full.names = TRUE)
+  status <- file.remove(filesToRemove)
+  message(sum(status), " texturas removidas (LODS ", paste(lodsToRemove, collapse = ", "), ")")
+  message("----------------------------")
 }

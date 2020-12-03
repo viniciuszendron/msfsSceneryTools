@@ -7,7 +7,7 @@
 checkFilesBinGltf(xmlPath, nlods)
 }
 \arguments{
-\item{nlods}{}
+\item{nlods}{Numeric. Number of lods of the project.}
 }
 \description{
 Check .bin and .gltf Files

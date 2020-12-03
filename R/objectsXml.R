@@ -7,11 +7,6 @@
 #' @export
 fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 
-  # Testes
-  # xmlPath <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega/PackageSources/scene/objects.xml"
-  # xmlPath <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/scene/objects.xml"
-  #
-
   obj <- xml2::read_xml(xmlPath)
 
   if (isTRUE(createBackup)) {
@@ -21,13 +16,10 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
   LibObjNodes <- xml2::xml_find_all(obj, "//SceneryObject/LibraryObject")
   message(basename(xmlPath), " inicializado com ", length(LibObjNodes), " entradas")
 
-  #guidsIndex <- stringr::str_replace_all() xml2::xml_attr(LibObjNodes, attr = "name")
   guidsIndex <- xml2::xml_attr(LibObjNodes, attr = "name")
 
   nodesToRemove <- which(guidsIndex %in% paste0("{", invalidGuids, "}"))
-  # nodesToKeep <- which(!guidsIndex %in% paste0("{", invalidGuids, "}"))
 
-  # newObj <- xml2::xml_children(obj)[nodesToKeep]
   message("Removendo ", length(nodesToRemove), " entradas inválidas")
   xml2::xml_remove(xml2::xml_children(obj)[nodesToRemove])
   message(length(nodesToRemove), " entradas inválidas removidas")
@@ -54,10 +46,6 @@ fixObjectsXML <- function(xmlPath, invalidGuids, createBackup = FALSE) {
 #' objectsXmlGuids("D:/FSProjects/my-package/PackageSources/scene/objects.xml")
 #' }
 objectsXmlGuids <- function(xmlPath){
-
-  # Tests
-  # xmlPath <- "D:/FSProjects/maceio/PackageSources/scene/objects.xml"
-  #
 
   obj <- xml2::read_xml(xmlPath)
 

@@ -7,7 +7,7 @@
 checkAllFilesBinGltf(modelLibDir, nlods)
 }
 \arguments{
-\item{nlods}{}
+\item{nlods}{Numeric. Number of lods of the project.}
 }
 \description{
 Check multiple .bin and .gltf files

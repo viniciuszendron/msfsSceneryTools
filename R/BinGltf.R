@@ -1,18 +1,13 @@
 #' Check .bin and .gltf Files
 #'
 #' @param xmlPath
-#' @param nlods
+#' @param nlods Numeric. Number of lods of the project.
 #'
 #' @return
 #' @export
 #'
 #' @examples
 checkFilesBinGltf <- function(xmlPath, nlods) {
-
-  # Tests
-  #xmlPath = xmlsDir[[1]]
-  #nlods = 3
-  #
 
   id <- stringr::str_sub(basename(xmlPath), end = -5)
   lods <- paste0("_LOD0", 0:(nlods-1))
@@ -46,7 +41,7 @@ checkFilesBinGltf <- function(xmlPath, nlods) {
 #' Check multiple .bin and .gltf files
 #'
 #' @param modelLibDir
-#' @param nlods
+#' @param nlods Numeric. Number of lods of the project.
 #'
 #' @return
 #' @export
@@ -117,27 +112,3 @@ fixBinGltf <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
 
 }
 
-removeBinGltfByLods <- function(modelLibDir, lodsToRemove) {
-  # modelLibDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib"
-  lodsToRemoveF <- paste0("_LOD", lodsToRemove)
-  pattern <- paste0(
-    c(
-      paste0(lodsToRemoveF, ".bin"),
-      paste0(lodsToRemoveF, ".gltf")
-    ),
-    collapse = "|"
-  )
-  filesToRemove <- list.files(modelLibDir, pattern = pattern, full.names = TRUE)
-  status <- file.remove(filesToRemove)
-  message(sum(status), " arquivos BIN/GLTF removidos (LODS ", paste(lodsToRemove, collapse = ", "), ")")
-  message("----------------------------")
-}
-
-removeModelLibTexturesByLods <- function(textureDir, lodsToRemove) {
-  # textureDir <- "D:/FSProjects/florianopolis-megapack/florianopolis-mega - Copia/PackageSources/modelLib/texture"
-  lodsToRemoveF <- paste0("_LOD", lodsToRemove, collapse = "|")
-  filesToRemove <- list.files(textureDir, pattern = lodsToRemoveF, full.names = TRUE)
-  status <- file.remove(filesToRemove)
-  message(sum(status), " texturas removidas (LODS ", paste(lodsToRemove, collapse = ", "), ")")
-  message("----------------------------")
-}

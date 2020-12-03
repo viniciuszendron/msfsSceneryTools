@@ -32,10 +32,10 @@ New function `removeLods` remove specific LODS from a project. It removes LOD en
 
 ##### New Functions
 
-- `removeLods`:
-- `removeLodNodesFromXML`:
-- `removeBinGltfByLods`:
-- `removeModelLibTexturesByLods`:
+- `removeLods`: Remove lods from project.
+- `removeLodNodesFromXML`: Remove lod nodes from XML.
+- `removeBinGltfByLods`: Remove .bin and .gltf by lods.
+- `removeModelLibTexturesByLods`: Remove textures by lods.
 
 
 ### Version 0.2.0
