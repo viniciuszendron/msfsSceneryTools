@@ -1,18 +1,13 @@
 #' Check .bin and .gltf Files
 #'
 #' @param xmlPath
-#' @param nlods
+#' @param nlods Numeric. Number of lods of the project.
 #'
 #' @return
 #' @export
 #'
 #' @examples
 checkFilesBinGltf <- function(xmlPath, nlods) {
-
-  # Tests
-  #xmlPath = xmlsDir[[1]]
-  #nlods = 3
-  #
 
   id <- stringr::str_sub(basename(xmlPath), end = -5)
   lods <- paste0("_LOD0", 0:(nlods-1))
@@ -46,7 +41,7 @@ checkFilesBinGltf <- function(xmlPath, nlods) {
 #' Check multiple .bin and .gltf files
 #'
 #' @param modelLibDir
-#' @param nlods
+#' @param nlods Numeric. Number of lods of the project.
 #'
 #' @return
 #' @export
@@ -116,3 +111,4 @@ fixBinGltf <- function(PackageSourcesDir, invalids, deleteTextures = TRUE) {
   fixObjectsXML(xmlPath = file.path(PackageSourcesDir, "scene/objects.xml"), invalidGuids = invalidGuids)
 
 }
+
